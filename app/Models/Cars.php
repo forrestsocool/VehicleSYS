@@ -26,14 +26,17 @@ class Cars extends Model
     }
 
 
-
     //update Position
-    public function updateLocation($uid, $latitude, $longitude, $locateTime)
+    public function updateLocation($id,$latitude,$longitude,$speed,$angle,$time,$state)
     {
-        $model = static::find($uid);
+        $model = static::find($id);
         $model->latitude = $latitude;
-        $model->langitude = $longitude;
-        $model->recordtime = time();
+        $model->longitude = $longitude;
+        $model->speed = $speed;
+        $model->angle = $angle;
+        $model->locateTime = $time;
+        $model->state = $state;
+        $model->recordTime = date('Y-m-d H:i:s');
         $model->save();
     }
 

@@ -12,6 +12,7 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        //
+        //北斗数据提交页面禁用CSRF
+        'beidou',
     ];
 }

@@ -16,15 +16,15 @@ class CreateCarTable extends Migration
         //create car table
         Schema::create('cars',function (Blueprint $table)
         {
-            $table->increments('uid');
+            $table->increments('id');
             $table->string('sim',15);
             $table->string('license',15);
             $table->string('type',32);
             $table->smallInteger('busload')->unsighed()->default(10);
             $table->datetime('locatetime')->default('1991-11-22 00:00:00');
             $table->datetime('recordtime')->default('1991-11-22 00:00:00');
-            $table->decimal('latitude',9,6);
-            $table->decimal('longitude',9,6);
+            $table->decimal('latitude',13,10);
+            $table->decimal('longitude',13,10);
             $table->unsignedSmallInteger('speed');
             $table->unsignedSmallInteger('angle');
             $table->float('mile');

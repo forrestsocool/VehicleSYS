@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Restful api 格式，实现车辆北斗定位数据的更新查询
+Route::resource('beidou', 'BeiDouController',
+                    ['except' => ['create', 'store', 'update', 'destroy']]);
+Route::get('beidou/{id}/edit', 'BeiDouController@edit');
