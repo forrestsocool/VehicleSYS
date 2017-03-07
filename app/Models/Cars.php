@@ -15,8 +15,8 @@ class Cars extends Model
     //do not use the timestamps store func provided by laravel
     public $timestamps = false;
 
-    //words can be filled;
-    protected $guared = ['uid'];
+    //保护字段;
+    protected $guared = ['id'];
 
     //find all car's info
     public function findAll()
@@ -41,8 +41,17 @@ class Cars extends Model
     }
 
     //get latitude
+    public function getLatitude($id)
+    {
+        $model = static::find($id);
+        return $model->latitude;
+    }
 
-
-
+    //get longitude
+    public function getLongitude($id)
+    {
+        $model = static::find($id);
+        return $model->longitude;
+    }
 
 }
