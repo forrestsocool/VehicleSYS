@@ -113,7 +113,7 @@ class BeiDouController extends Controller
             //更新坐标信息
             $mCar->updateLocation($id,$latitude,$longitude,$speed,$angle,$time,$state);
 
-            return $diff;//'success';
+            return 'success';
         }
 
         //捕获异常
