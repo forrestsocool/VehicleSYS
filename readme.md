@@ -1,40 +1,53 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img width="150"src="https://laravel.com/laravel.png"></a></p>
+## 简介
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+一个新手入门级别的Laravel + Android应用，主要用于和互联网隔离情况下，使用内部物联网的车辆的位置信息管理。系统2017年6月开始已在某单位运行，同时支持约100辆车辆实时在线监测。
 
-## About Laravel
+## 框架
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+后台基于Laravel简单地实现了一个Restful Api，用于实时记录和读取车辆位置、车速、朝向、历史轨迹等信息。固定信息依赖PhpMyAdmin录入，如车牌号、车型、载客量等信息。实时信息由车载物联网依Restful Api进行上传。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+前台基于Android端的OpenSteetMap组件开发，实现在和互联网隔离下的GIS信息和车辆信息实时显示。
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+## API
 
-## Learning Laravel
+- 1.车载终端实时上传信息
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+方式：Get请求， http://服务器地址/{id}/edit？latitude=XXX&longitude=XXX&speed=XXX&angle=XXX&locatetime=XXX
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+功能：车载终端调用该API实现当前车辆位置、速度、角度等信息的上传。
 
-## Contributing
+源码：/app/Http/Controllers/BeiDouController.php 部分
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+- 2.返回所有车辆实时信息
 
-## Security Vulnerabilities
+方式：Get请求， http://服务器地址/     ， 返回值为Json
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+功能：Android调用该API获取所有车辆的实时信息
 
-## License
+源码：/app/Http/Controllers/BeiDouController.php 部分
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+- 3.返回某辆车的实时信息
+
+方式：Get请求， http://服务器地址/{id}， 返回值为Json
+
+功能：Android调用该API获取车辆ID为{id}车辆的实时信息
+
+源码：/app/Http/Controllers/BeiDouController.php 部分
+
+- 4.返回某辆车的轨迹信息
+
+方式：Get请求， http://服务器地址/trace/{id}， 返回值为Json
+
+功能：Android调用该API获取车辆ID为{id}车辆的轨迹信息
+
+源码：/app/Http/Controllers/BeiDouController.php 部分
+
+## 数据库
+
+数据库依据需求设计三个表，car表存储所有车辆固定信息，如颜色、车型、车牌、ID等。carpts存储车辆轨迹信息，用于车辆当日轨迹信息的显示。carpts_201801XX每日新建一个表，用于存储历史轨迹。
+
+## 功能
+
+有了后台对所有车辆实时信息的存储读取API，Android端实现可对车辆的电子围栏管理（出围栏报警）、位置、速度、车型等基本信息展示、轨迹展示、超速报警等等。
+![车辆管理系统Android端](https://raw.githubusercontent.com/sm1314/VehicleSYS/master/screenshots/screen.png)
+
