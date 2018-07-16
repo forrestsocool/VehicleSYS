@@ -2,6 +2,8 @@
 
 一个新手入门级别的Laravel + Android应用，主要用于车辆的位置信息管理。系统2017年6月开始已在某单位运行，同时支持约100辆车辆实时在线监测。
 
+Android端： https://github.com/sm1314/VehicleSYS_An
+
 ## 框架
 
 后台基于Laravel简单地实现了一个Restful Api，用于实时记录和读取车辆位置、车速、朝向、历史轨迹等信息。固定信息依赖PhpMyAdmin录入，如车牌号、车型、载客量等信息。实时信息由车载物联网依Restful Api进行上传。
