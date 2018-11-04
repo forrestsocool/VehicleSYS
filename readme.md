@@ -53,3 +53,19 @@ Android端： https://github.com/sm1314/VehicleSYS_An
 有了后台对所有车辆实时信息的存储读取API，Android端实现可对车辆的电子围栏管理（出围栏报警）、位置、速度、车型等基本信息展示、轨迹展示、超速报警等等。
 ![车辆管理系统Android端](https://raw.githubusercontent.com/sm1314/VehicleSYS/master/screenshots/screen.png)
 
+## License
+
+DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+        Version 2, December 2004
+
+Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+
+Everyone is permitted to copy and distribute verbatim or modified
+copies of this license document, and changing it is allowed as long
+as the name is changed.
+
+DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+0. You just DO WHAT THE FUCK YOU WANT TO.
+
